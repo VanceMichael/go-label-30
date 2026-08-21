@@ -1,6 +1,7 @@
 package audit
 
 import (
+	"context"
 	"crypto/sha256"
 	"encoding/hex"
 	"encoding/json"
@@ -11,6 +12,10 @@ import (
 
 	"go-base/internal/domain"
 )
+
+type Authorizer interface {
+	Approve(context.Context, Event) error
+}
 
 type Event struct {
 	ID           string
